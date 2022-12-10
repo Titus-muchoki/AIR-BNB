@@ -1,0 +1,14 @@
+{{#partial "content"}}
+
+    <h1> List o' bookings to do!</h1>
+
+    {{#if bookings}}
+        {{#each bookings }}
+            <p><a href="/categories/{{categoryId}}/bookings/{{id}}">{{description}}</a></p>
+        {{/each}}
+    {{else}}
+        <p>No bookings!</p>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}

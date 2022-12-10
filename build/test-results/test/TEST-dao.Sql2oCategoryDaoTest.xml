@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dao.Sql2oCategoryDaoTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-30T19:14:09" hostname="kajela-HP-EliteBook-840-G3" time="0.669">
+  <properties/>
+  <testcase name="noCategoriesReturnsEmptyList" classname="dao.Sql2oCategoryDaoTest" time="0.174"/>
+  <testcase name="clearAllClearsAllCategories" classname="dao.Sql2oCategoryDaoTest" time="0.086"/>
+  <testcase name="deleteByIdDeletesCorrectCategory" classname="dao.Sql2oCategoryDaoTest" time="0.098"/>
+  <testcase name="updateChangesCategoryContent" classname="dao.Sql2oCategoryDaoTest" time="0.069"/>
+  <testcase name="addedCategoriesAreReturnedFromGetAll" classname="dao.Sql2oCategoryDaoTest" time="0.045"/>
+  <testcase name="getAllBookingByCategoryReturnsLoansCorrectly" classname="dao.Sql2oCategoryDaoTest" time="0.111"/>
+  <testcase name="addingCategorySetsId" classname="dao.Sql2oCategoryDaoTest" time="0.033"/>
+  <testcase name="existingCategoryCanBeFoundById" classname="dao.Sql2oCategoryDaoTest" time="0.04"/>
+  <system-out><![CDATA[clearing database
+clearing database
+clearing database
+clearing database
+clearing database
+clearing database
+clearing database
+clearing database
+connection closed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
