@@ -4,11 +4,12 @@
     <ul>
         {{#each bookings}}
             <li>
-                <p><a href="/categories/{{category.id}}/bookings/{{id}}">{{description}}</a></p>
+                <p><a href="/categories/{{category.id}}/bookings/{{id}}">{{description}}{{date}}</a></p>
             </li>
         {{/each}}
     </ul>
-    <a href="/categories/{{category.id}}/edit">Edit this category</a><br>
+    <button>    <a href="/categories/{{category.id}}/edit">Edit this category</a><br>
+    </button>
     <a href="/categories/{{category.id}}/delete">DELETE this category</a>
 {{/partial}}
 

@@ -30,6 +30,11 @@ public class Sql2oCategoryDao implements CategoryDao {
         }
     }
 
+//    @Override
+//    public List<Booking> getAllBookingsByCategory(int dateId, int categoryId) {
+//        return null;
+//    }
+
     @Override
     public List<Category> getAll() {
         try (Connection con = sql2o.open()) {
@@ -49,7 +54,7 @@ public class Sql2oCategoryDao implements CategoryDao {
     @Override
     public List<Booking> getAllBookingsByCategory(int categoryId) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM bookings WHERE categoryId = :categoryId")
+            return con.createQuery("SELECT * FROM bookings WHERE  categoryId =  :categoryId")
                     .addParameter("categoryId", categoryId)
                     .executeAndFetch(Booking.class);
         }

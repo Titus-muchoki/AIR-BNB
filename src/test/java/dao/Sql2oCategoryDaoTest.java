@@ -94,19 +94,19 @@ public class Sql2oCategoryDaoTest {
         assertTrue(daoSize > 0 && daoSize > categoryDao.getAll().size());
     }
     @Test
-    public void getAllBookingByCategoryReturnsLoansCorrectly() {
+    public void getAllBookingByCategoryReturnsBookingsCorrectly() {
         Category category = setupNewCategory();
         categoryDao.add(category);
         int categoryId = category.getId();
-        Booking newBooking = new Booking("mow the lawn", categoryId);
-        Booking otherBooking = new Booking("pull weeds", categoryId);
-        Booking thirdBooking = new Booking("trim hedge", categoryId);
+        Booking newBooking = new Booking("mow the lawn", 1 , categoryId);
+        Booking otherBooking = new Booking("pull weeds", 1, categoryId);
+        Booking thirdBooking = new Booking("trim hedge",1, categoryId);
         bookingDao.add(newBooking);
         bookingDao.add(otherBooking); //we are not adding loan 3 so, we can test things precisely.
-        assertEquals(2, categoryDao.getAllBookingsByCategory(categoryId).size());
-        assertFalse(categoryDao.getAllBookingsByCategory(categoryId).contains(newBooking));
-        assertFalse(categoryDao.getAllBookingsByCategory(categoryId).contains(otherBooking));
-        assertFalse(categoryDao.getAllBookingsByCategory(categoryId).contains(thirdBooking)); //things are accurate!
+        assertEquals(2, categoryDao.getAllBookingsByCategory( categoryId).size());
+        assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(newBooking));
+        assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(otherBooking));
+        assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(thirdBooking)); //things are accurate!
     }
     public Category setupNewCategory(){
         return new Category("Yardwork");

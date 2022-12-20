@@ -33,7 +33,7 @@ public class BookingTest {
 
     //helper methods
     public Booking setupNewBooking(){
-        return new Booking("Mow the lawn", 1);
+        return new Booking("Mow the lawn", 1, 1);
     }
 
 }

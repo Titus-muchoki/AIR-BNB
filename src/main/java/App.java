@@ -6,9 +6,7 @@ import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.*;
 
@@ -23,14 +21,9 @@ public class App {
         Sql2oCategoryDao categoryDao = new Sql2oCategoryDao(sql2o);
 
 
-//        get("/loan", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "index.html");
-//        }, new HandlebarsTemplateEngine());
-
         //get: show all bookings in all categories and show all categories
 
-        get("/", (req, res) -> {
+        get("/mybookings", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
@@ -86,7 +79,7 @@ public class App {
             Category foundCategory = categoryDao.findById(idOfCategoryToFind);
             model.put("category", foundCategory);
             List<Booking> allBookingByCategory = categoryDao.getAllBookingsByCategory(idOfCategoryToFind);
-            model.put("tasks", allBookingByCategory);
+            model.put("bookings", allBookingByCategory);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "category-detail.hbs"); //new
         }, new HandlebarsTemplateEngine());
@@ -137,15 +130,10 @@ public class App {
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
             String description = req.queryParams("description");
+            int date = Integer.parseInt(req.queryParams("date"));
             int categoryId = Integer.parseInt(req.queryParams("categoryId"));
-            Booking newBooking = new Booking(description, categoryId);        //See what we did with the hard coded categoryId?
+            Booking newBooking = new Booking(description, date, categoryId );        //See what we did with the hard coded categoryId?
             bookingDao.add(newBooking);
-//            List<Task> tasksSoFar = taskDao.getAll();
-//            for (Task taskItem: tasksSoFar
-//                 ) {
-//                System.out.println(taskItem);
-//            }
-//            System.out.println(tasksSoFar);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -172,17 +160,18 @@ public class App {
             model.put("categories", allCategories);
             Booking booking = bookingDao.findById(Integer.parseInt(req.params("id")));
             model.put("booking", booking);
-            model.put("editLoan", true);
+            model.put("editBooking", true);
             return new ModelAndView(model, "booking-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //loan: process a form to update a task
-        post("/loans/:id", (req, res) -> { //URL to update task on POST route
+        //: process a form to update a task
+        post("/bookings/:id", (req, res) -> { //URL to update task on POST route
             Map<String, Object> model = new HashMap<>();
             int bookingToEditId = Integer.parseInt(req.params("id"));
             String newContent = req.queryParams("description");
+            int newDate = Integer.parseInt(req.queryParams("date"));
             int newCategoryId = Integer.parseInt(req.queryParams("categoryId"));
-            bookingDao.update(bookingToEditId, newContent, newCategoryId);  // remember the hardcoded categoryId we placed? See what we've done to/with it?
+            bookingDao.update(bookingToEditId, newContent, newDate, newCategoryId);  // remember the hardcoded categoryId we placed? See what we've done to/with it?
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());

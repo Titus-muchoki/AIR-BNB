@@ -10,9 +10,12 @@ public class Booking {
     private LocalDateTime createdAt;
     private int id;
     private int categoryId;
+    private int date;
 
-    public Booking(String description, int categoryId) {
+
+    public Booking(String description, int date, int categoryId) {
         this.description = description;
+        this.date = date;
         this.completed = false;
         this.createdAt = LocalDateTime.now();
         this.categoryId = categoryId;
@@ -23,12 +26,12 @@ public class Booking {
         if (this == o) return true;
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
-        return completed == booking.completed && id == booking.id && categoryId == booking.categoryId && Objects.equals(description, booking.description) && Objects.equals(createdAt, booking.createdAt);
+        return completed == booking.completed && id == booking.id && categoryId == booking.categoryId && date == booking.date && Objects.equals(description, booking.description) && Objects.equals(createdAt, booking.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, completed, createdAt, id, categoryId);
+        return Objects.hash(description, completed, createdAt, id, categoryId, date);
     }
 
     public String getDescription() {
@@ -69,5 +72,13 @@ public class Booking {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
     }
 }

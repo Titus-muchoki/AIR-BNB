@@ -7,6 +7,9 @@
             <label for="description">Edit this booking's description</label>
             <input id="description" name="description" type="text" value="{{booking.description}}">
             <br>
+            <label for="date">Edit this booking's date</label>
+            <input id="date" name="date" type="date" value="{{booking.date}}">
+            <br>
             <label for="categoryId">Update this booking's category:</label>
             <select id="categoryId" name="categoryId">
                 {{#each categories}}
@@ -23,6 +26,8 @@
             {{#if categories}}
                 <label for="description">Booking Description</label>
                 <input id="description" name="description" type="text">
+                <label for="date">days:</label>
+                    <input id="date" name="date" type="number"></form></br>
                 <label for="categoryId">Categorize this booking as:</label>
                 <select id="categoryId" name="categoryId">
                     {{#each categories}}
