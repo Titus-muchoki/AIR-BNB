@@ -3,11 +3,11 @@ package models;
 import java.util.Objects;
 
 public class Category {
-    private String name;
+    private int amount;
     private int id;
 
-    public Category(String name) {
-        this.name = name;
+    public Category(int amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -15,20 +15,20 @@ public class Category {
         if (this == o) return true;
         if (!(o instanceof Category)) return false;
         Category category = (Category) o;
-        return id == category.id && Objects.equals(name, category.name);
+        return amount == category.amount && id == category.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id);
+        return Objects.hash(amount, id);
     }
 
-    public String getName() {
-        return name;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public int getId() {

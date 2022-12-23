@@ -17,15 +17,13 @@ public class Sql2oBookingDao implements BookingDao {
 
     @Override
     public void add(Booking booking) {
-        String sql = "INSERT INTO bookings (description, date, categoryId) VALUES (:description, :date, :categoryId)"; //raw sql
+        String sql = "INSERT INTO bookings (description, startDate, endDate, clientName,  email,  categoryId) VALUES (:description, :startDate, :endDate, :clientName, :email, :categoryId)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
-//                    int date = (int) con.createQuery(sql, true)
                     .bind(booking) //map my argument onto the query so we can use information from it
                     .executeUpdate() //run it all
                     .getKey(); //int id is now the row number (row “key”) of db
             booking.setId(id);
-//            booking.setDate(date);//update object to set id now from database
         } catch (Sql2oException ex) {
             System.out.println(ex); //oops we have an error!
         }
@@ -48,12 +46,15 @@ public class Sql2oBookingDao implements BookingDao {
         }
     }
     @Override
-    public void update(int id, String newDescription, int newDate, int newCategoryId) {
-        String sql = "UPDATE bookings SET (description, date, categoryId) = (:description, :date, :categoryId) WHERE id=:id";
+    public void update(int id, String newDescription, String newStartDate, String newEndDate, String newClientName,  String email, int newCategoryId) {
+        String sql = "UPDATE bookings SET (description, startDate, endDate, clientName,  email, categoryId) = (:description, :startDate, :endDate, :clientName, :email, :categoryId) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("description", newDescription)
-                    .addParameter("date", newDate)
+                    .addParameter("startDate", newStartDate)
+                    .addParameter("endDate", newEndDate)
+                    .addParameter("clientName", newClientName)
+                    .addParameter("email",email)
                     .addParameter("categoryId", newCategoryId)
                     .addParameter("id", id)
                     .executeUpdate();

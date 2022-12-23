@@ -15,7 +15,7 @@ public interface BookingDao {
     Booking findById(int id);
 
     // UPDATE
-    void update(int id, String content, int date, int categoryId);
+    void update(int id, String description, String startDate, String endDate, String clientName,  String email, int categoryId);
 
     // DELETE
     void deleteById(int id);

@@ -20,20 +20,39 @@ public class BookingTest {
     }
 
     @Test
-    public void isCompletedPropertyIsFalseAfterInstantiation() throws Exception {
+    public void isBookedPropertyIsFalseAfterInstantiation() throws Exception {
         Booking booking = setupNewBooking();
-        assertEquals(false, booking.isCompleted()); //should never start as completed
+        assertEquals(false, booking.isBooked()); //should never start as completed
     }
 
     @Test
-    public void getCreatedAtInstantiatesWithCurrentTimeToday() throws Exception {
+    public void getStartDateInstantiatesWithCurrentTimeToday() throws Exception {
         Booking booking = setupNewBooking();
-        assertEquals(LocalDateTime.now().getDayOfWeek(), booking.getCreatedAt().getDayOfWeek());
+        assertEquals("",booking.getStartDate());
     }
-
+    @Test
+    public void getEndDateInstantiatesWithSelectedDay() throws Exception {
+        Booking booking = setupNewBooking();
+        assertEquals("", booking.getEndDate());
+    }
+    @Test
+    public void getClientNameInstantiatesWithClientName() throws Exception {
+        Booking booking = setupNewBooking();
+        assertEquals("", booking.getClientName());
+    }
+//    @Test
+//    public void getTelInstantiatesWithClientTelNumber() throws Exception {
+//        Booking booking = setupNewBooking();
+//        assertEquals(1, booking.getTel());
+//    }
+    @Test
+    public void getEmailInstantiatesWithClientEmail() throws Exception {
+        Booking booking = setupNewBooking();
+        assertEquals("", booking.getEmail());
+    }
     //helper methods
     public Booking setupNewBooking(){
-        return new Booking("Mow the lawn", 1, 1);
+        return new Booking("Mow the lawn", "", "", "","",1);
     }
 
 }

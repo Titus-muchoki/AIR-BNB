@@ -4,39 +4,60 @@
         <h1>Edit this Booking!</h1>
         <form action="/bookings/{{booking.id}}" method="post">
             <br>
-            <label for="description">Edit this booking's description</label>
+            <label for="description">Edit this booking description</label>
             <input id="description" name="description" type="text" value="{{booking.description}}">
             <br>
-            <label for="date">Edit this booking's date</label>
-            <input id="date" name="date" type="date" value="{{booking.date}}">
-            <br>
-            <label for="categoryId">Update this booking's category:</label>
+
+            <label for="startDate">Arrival date</label>
+            <input id="startDate" name="startDate" type="date" value="{{booking.startDate}}"> <br>
+
+            <label for="endDate">Vacating date</label>
+            <input id="endDate" name="endDate" type="date" value="{{booking.endDate}}"> <br>
+
+            <label for="clientName">Vacating date</label>
+            <input id="clientName" name="clientName" type="text" value="{{booking.clientName}}"> <br>
+
+            <label for="email">Client email</label>
+            <input id="email" name="email" type="text" value="{{booking.email}}"> <br>
+
+            <label for="categoryId">Update this booking category:</label>
             <select id="categoryId" name="categoryId">
                 {{#each categories}}
-                    <option value="{{id}}">{{name}}</option>
+                    <option value="{{id}}">{{amount}}</option>
                 {{/each}}
             </select>
             <p>Don't see the right category?<a href="/categories/new">Add a new one first.</a></p>
             <button type="submit" class="btn btn-default">Go!</button>
         </form>
     {{else}}
-        <h1>Add a new Booking!</h1>
+        <h1>Add a new Product!</h1>
 
         <form action="/bookings" method="post">
             {{#if categories}}
-                <label for="description">Booking Description</label>
-                <input id="description" name="description" type="text">
-                <label for="date">days:</label>
-                    <input id="date" name="date" type="number"></form></br>
+                <label for="description">booking Description</label>
+                <input id="description" name="description" type="text"> <br> <br>
+
+                <label for="startDate">Arrival date</label>
+                <input id="startDate" name="startDate" type="date"> <br> <br>
+
+                <label for="endDate">Vacating date</label>
+                <input id="endDate" name="endDate" type="date"> <br> <br>
+
+                <label for="clientName">Client name</label>
+                <input id="clientName" name="clientName" type="text"> <br> <br>
+
+                <label for="email">Client email</label>
+                <input id="email" name="email" type="text"> <br> <br>
+
                 <label for="categoryId">Categorize this booking as:</label>
                 <select id="categoryId" name="categoryId">
                     {{#each categories}}
-                        <option value="{{id}}">{{name}}</option>
+                        <option value="{{id}}">{{amount}}</option>
                     {{/each}}
                 </select>
                 <p>Don't see the right category?<a href="/categories/new">Add a new one first.</a></p>
             {{else}}
-                <h3> You'll need to add a category before you add a booking. <a href="/categories/new">Add one here.</a> </h3>
+                <h3> You'll need to add a category before you add a product. <a href="/categories/new">Add one here.</a> </h3>
 
             {{/if}}
             <button type="submit" class="btn btn-default">Go!</button>

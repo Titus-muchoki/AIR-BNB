@@ -20,7 +20,7 @@ public interface CategoryDao {
     Category findById(int id);
 
     //UPDATE
-    void update(int id, String name);
+    void update(int id, int amount);
 
     //DELETE
     void deleteById(int id);

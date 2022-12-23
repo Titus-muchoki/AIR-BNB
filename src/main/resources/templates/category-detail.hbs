@@ -1,16 +1,16 @@
 {{#partial "content"}}
-    <h1>{{category.name}}</h1>
-    <p>Here are all the bookings                                                                            s listed in this category:</p>
+    <h1>{{category.amount}}</h1>
+    <p>Here are all the bookings listed with their amount price:</p>
     <ul>
         {{#each bookings}}
             <li>
-                <p><a href="/categories/{{category.id}}/bookings/{{id}}">{{description}}{{date}}</a></p>
+                <p><a href="/categories/{{category.id}}/bookings/{{id}}">{{description}} </a></p>
             </li>
         {{/each}}
     </ul>
-    <button>    <a href="/categories/{{category.id}}/edit">Edit this category</a><br>
+    <button>    <a href="/categories/{{category.id}}/edit">Edit this amount</a><br>
     </button>
-    <a href="/categories/{{category.id}}/delete">DELETE this category</a>
+    <a href="/categories/{{category.id}}/delete">DELETE this amount</a>
 {{/partial}}
 
 {{> layout.hbs}}

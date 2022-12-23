@@ -42,7 +42,7 @@ public class Sql2oCategoryDaoTest {
     }
     @Test
     public void addingCategorySetsId() {
-        Category category = new Category("mow the lawn");
+        Category category = new Category(1);
         int originalCategoryId = category.getId();
         categoryDao.add(category);
         assertNotEquals(originalCategoryId, category.getId()); //how does this work?
@@ -51,7 +51,7 @@ public class Sql2oCategoryDaoTest {
 
     @Test
     public void existingCategoryCanBeFoundById() {
-        Category category = new Category("mow the lawn");
+        Category category = new Category(1);
         categoryDao.add(category);
         Category foundCategory = categoryDao.findById(category.getId());
         assertEquals(category, foundCategory); //should be the same
@@ -69,12 +69,12 @@ public class Sql2oCategoryDaoTest {
     }
     @Test
     public void updateChangesCategoryContent() {
-        String initialDescription = "Yardwork";
+        int initialDescription = 1;
         Category category = new Category (initialDescription);
         categoryDao.add(category);
-        categoryDao.update(category.getId(),"Cleaning");
+        categoryDao.update(category.getId(),2);
         Category updatedCategory = categoryDao.findById(category.getId());
-        assertNotEquals(initialDescription, updatedCategory.getName());
+        assertNotEquals(initialDescription, updatedCategory.getAmount());
     }
     @Test
     public void deleteByIdDeletesCorrectCategory() {
@@ -86,7 +86,7 @@ public class Sql2oCategoryDaoTest {
     @Test
     public void clearAllClearsAllCategories() {
         Category category = setupNewCategory();
-        Category otherCategory = new Category("Cleaning");
+        Category otherCategory = new Category(1);
         categoryDao.add(category);
         categoryDao.add(otherCategory);
         int daoSize = categoryDao.getAll().size();
@@ -98,18 +98,18 @@ public class Sql2oCategoryDaoTest {
         Category category = setupNewCategory();
         categoryDao.add(category);
         int categoryId = category.getId();
-        Booking newBooking = new Booking("mow the lawn", 1 , categoryId);
-        Booking otherBooking = new Booking("pull weeds", 1, categoryId);
-        Booking thirdBooking = new Booking("trim hedge",1, categoryId);
+        Booking newBooking = new Booking("mow the lawn", "" , "", "","",categoryId);
+        Booking otherBooking = new Booking("pull weeds", "","", "", "", categoryId);
+        Booking thirdBooking = new Booking("trim hedge","","", "", "",  categoryId);
         bookingDao.add(newBooking);
         bookingDao.add(otherBooking); //we are not adding loan 3 so, we can test things precisely.
         assertEquals(2, categoryDao.getAllBookingsByCategory( categoryId).size());
-        assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(newBooking));
-        assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(otherBooking));
+        assertTrue(categoryDao.getAllBookingsByCategory( categoryId).contains(newBooking));
+        assertTrue(categoryDao.getAllBookingsByCategory( categoryId).contains(otherBooking));
         assertFalse(categoryDao.getAllBookingsByCategory( categoryId).contains(thirdBooking)); //things are accurate!
     }
     public Category setupNewCategory(){
-        return new Category("Yardwork");
+        return new Category(1);
     }
 
 }

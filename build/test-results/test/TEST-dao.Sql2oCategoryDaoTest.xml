@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dao.Sql2oCategoryDaoTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-12-19T18:34:02" hostname="kajela-HP-EliteBook-840-G3" time="0.656">
+<testsuite name="dao.Sql2oCategoryDaoTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-12-23T08:40:41" hostname="kajela-HP-EliteBook-840-G3" time="0.639">
   <properties/>
-  <testcase name="noCategoriesReturnsEmptyList" classname="dao.Sql2oCategoryDaoTest" time="0.179"/>
-  <testcase name="clearAllClearsAllCategories" classname="dao.Sql2oCategoryDaoTest" time="0.09"/>
-  <testcase name="deleteByIdDeletesCorrectCategory" classname="dao.Sql2oCategoryDaoTest" time="0.055"/>
-  <testcase name="updateChangesCategoryContent" classname="dao.Sql2oCategoryDaoTest" time="0.091"/>
-  <testcase name="addedCategoriesAreReturnedFromGetAll" classname="dao.Sql2oCategoryDaoTest" time="0.043"/>
-  <testcase name="getAllBookingByCategoryReturnsBookingsCorrectly" classname="dao.Sql2oCategoryDaoTest" time="0.109"/>
-  <testcase name="addingCategorySetsId" classname="dao.Sql2oCategoryDaoTest" time="0.039"/>
-  <testcase name="existingCategoryCanBeFoundById" classname="dao.Sql2oCategoryDaoTest" time="0.041"/>
+  <testcase name="noCategoriesReturnsEmptyList" classname="dao.Sql2oCategoryDaoTest" time="0.168"/>
+  <testcase name="clearAllClearsAllCategories" classname="dao.Sql2oCategoryDaoTest" time="0.083"/>
+  <testcase name="deleteByIdDeletesCorrectCategory" classname="dao.Sql2oCategoryDaoTest" time="0.054"/>
+  <testcase name="updateChangesCategoryContent" classname="dao.Sql2oCategoryDaoTest" time="0.113"/>
+  <testcase name="addedCategoriesAreReturnedFromGetAll" classname="dao.Sql2oCategoryDaoTest" time="0.051"/>
+  <testcase name="getAllBookingByCategoryReturnsBookingsCorrectly" classname="dao.Sql2oCategoryDaoTest" time="0.089"/>
+  <testcase name="addingCategorySetsId" classname="dao.Sql2oCategoryDaoTest" time="0.034"/>
+  <testcase name="existingCategoryCanBeFoundById" classname="dao.Sql2oCategoryDaoTest" time="0.04"/>
   <system-out><![CDATA[clearing database
 clearing database
 clearing database

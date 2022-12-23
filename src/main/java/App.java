@@ -6,6 +6,7 @@ import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.security.Timestamp;
 import java.util.*;
 
 import static spark.Spark.*;
@@ -23,7 +24,7 @@ public class App {
 
         //get: show all bookings in all categories and show all categories
 
-        get("/mybookings", (req, res) -> {
+        get("/bookings", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
@@ -46,8 +47,8 @@ public class App {
 
         post("/categories", (req, res) -> { //new
             Map<String, Object> model = new HashMap<>();
-            String name = req.queryParams("name");
-            Category newCategory = new Category(name);
+            int amount = Integer.parseInt(req.queryParams("amount"));
+            Category newCategory = new Category(amount);
             categoryDao.add(newCategory);
             res.redirect("/");
             return null;
@@ -100,8 +101,8 @@ public class App {
         post("/categories/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfCategoryToEdit = Integer.parseInt(req.params("id"));
-            String newName = req.queryParams("newCategoryName");
-            categoryDao.update(idOfCategoryToEdit, newName);
+            int newAmount = Integer.parseInt(req.queryParams("newCategoryAmount"));
+            categoryDao.update(idOfCategoryToEdit, newAmount);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -119,20 +120,24 @@ public class App {
         //get: show new booking form
         get("/bookings/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = categoryDao.getAll();
+            List<Category> categories =  categoryDao.getAll();
             model.put("categories", categories);
             return new ModelAndView(model, "booking-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+
 //        //task: process new booking form
-        post("/bookings", (req, res) -> { //URL to make new task on POST route
+        post("/bookings", (req, res) -> { //URL to make new task on POST rout
             Map<String, Object> model = new HashMap<>();
             List<Category> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
             String description = req.queryParams("description");
-            int date = Integer.parseInt(req.queryParams("date"));
+            String startDate = req.queryParams("startDate");
+            String endDate = req.queryParams("endDate");
+            String clientName = req.queryParams("clientName");
+            String email = req.queryParams("email");
             int categoryId = Integer.parseInt(req.queryParams("categoryId"));
-            Booking newBooking = new Booking(description, date, categoryId );        //See what we did with the hard coded categoryId?
+            Booking newBooking = new Booking(description, startDate, endDate, clientName,  email, categoryId );//See what we did with the hard coded categoryId?
             bookingDao.add(newBooking);
             res.redirect("/");
             return null;
@@ -168,10 +173,13 @@ public class App {
         post("/bookings/:id", (req, res) -> { //URL to update task on POST route
             Map<String, Object> model = new HashMap<>();
             int bookingToEditId = Integer.parseInt(req.params("id"));
-            String newContent = req.queryParams("description");
-            int newDate = Integer.parseInt(req.queryParams("date"));
+            String newDescription = req.queryParams("description");
+            String newStartDate = req.queryParams("startDate");
+            String newEndDate = req.queryParams("endDate");
+            String newClientName = req.queryParams("clientName");
+            String newEmail = req.queryParams("email");
             int newCategoryId = Integer.parseInt(req.queryParams("categoryId"));
-            bookingDao.update(bookingToEditId, newContent, newDate, newCategoryId);  // remember the hardcoded categoryId we placed? See what we've done to/with it?
+            bookingDao.update(bookingToEditId, newDescription, newStartDate, newEndDate, newClientName,  newEmail,  newCategoryId);  // remember the hardcoded categoryId we placed? See what we've done to/with it?
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());

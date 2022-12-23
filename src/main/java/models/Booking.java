@@ -1,23 +1,26 @@
 package models;
-
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Booking {
 
     private String description;
-    private boolean completed;
-    private LocalDateTime createdAt;
+    private boolean booked;
+    private String startDate;
+    private String endDate;
+    private String clientName;
+    private String email;
+
     private int id;
     private int categoryId;
-    private int date;
 
 
-    public Booking(String description, int date, int categoryId) {
+    public Booking(String description, String startDate, String endDate, String clientName,  String email, int categoryId) {
         this.description = description;
-        this.date = date;
-        this.completed = false;
-        this.createdAt = LocalDateTime.now();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.clientName = clientName;
+        this.email = email;
+        this.booked = false;
         this.categoryId = categoryId;
     }
 
@@ -26,12 +29,12 @@ public class Booking {
         if (this == o) return true;
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
-        return completed == booking.completed && id == booking.id && categoryId == booking.categoryId && date == booking.date && Objects.equals(description, booking.description) && Objects.equals(createdAt, booking.createdAt);
+        return booked == booking.booked && id == booking.id && categoryId == booking.categoryId && Objects.equals(description, booking.description) && Objects.equals(startDate, booking.startDate) && Objects.equals(endDate, booking.endDate) && Objects.equals(clientName, booking.clientName) && Objects.equals(email, booking.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, completed, createdAt, id, categoryId, date);
+        return Objects.hash(description, booked, startDate, endDate, clientName, email, id, categoryId);
     }
 
     public String getDescription() {
@@ -42,20 +45,46 @@ public class Booking {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public boolean isBooked() {
+        return booked;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setBooked(boolean booked) {
+        this.booked = booked;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -72,13 +101,5 @@ public class Booking {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
     }
 }

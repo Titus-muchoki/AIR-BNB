@@ -48,7 +48,7 @@ public class Sql2oBookingDaoTest {
         Booking booking = setupNewBooking();
         bookingDao.add(booking); //add to dao (takes care of saving)
         Booking foundBooking = bookingDao.findById(booking.getId()); //retrieve
-        assertNotEquals(booking, foundBooking); //should be the same
+        assertEquals(booking, foundBooking); //should be the same
     }
 
     @Test
@@ -67,9 +67,9 @@ public class Sql2oBookingDaoTest {
     @Test
     public void updateChangesBookingContent() {
         String initialDescription = "mow the lawn";
-        Booking booking = new Booking (initialDescription, 1,1);// or use the helper method for easier refactoring
+        Booking booking = new Booking (initialDescription, "","","","",1);// or use the helper method for easier refactoring
         bookingDao.add(booking);
-        bookingDao.update(booking.getId(),"brush the cat", 1,1);
+        bookingDao.update(booking.getId(),"mow the lawn", "","","","", 1);
         Booking updatedBooking =  bookingDao.findById(booking.getId()); //why do I need to refind this?
         assertEquals(initialDescription, updatedBooking.getDescription());
     }
@@ -83,7 +83,7 @@ public class Sql2oBookingDaoTest {
     @Test
     public void clearAllClearsAll() {
         Booking booking = setupNewBooking();
-        Booking otherBooking = new Booking("brush the cat", 1,1);
+        Booking otherBooking = new Booking("brush the cat", "","","","", 1);
         bookingDao.add(booking);
         bookingDao.add(otherBooking);
         int daoSize = bookingDao.getAll().size();
@@ -99,7 +99,7 @@ public class Sql2oBookingDaoTest {
     }
     //define the following once and then call it as above in your tests.
     public Booking setupNewBooking(){
-        return new Booking("Mow the lawn", 1,1);
+        return new Booking("Mow the lawn", "","","","",1);
     }
 
 }
