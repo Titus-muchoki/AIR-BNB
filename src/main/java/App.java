@@ -136,7 +136,7 @@ public class App {
             String endDate = req.queryParams("endDate");
             String clientName = req.queryParams("clientName");
             String email = req.queryParams("email");
-            int categoryId = Integer.parseInt(req.queryParams("categoryId"));
+           int categoryId = Integer.parseInt(req.queryParams("categoryId"));
             Booking newBooking = new Booking(description, startDate, endDate, clientName,  email, categoryId );//See what we did with the hard coded categoryId?
             bookingDao.add(newBooking);
             res.redirect("/");
